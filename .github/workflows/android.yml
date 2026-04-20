@@ -2,7 +2,7 @@ name: Build Android APK
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main" ] # تأكد أن اسم الفرع عندك main وليس master
   pull_request:
     branches: [ "main" ]
 
@@ -12,10 +12,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4 # تم التحديث إلى v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5 # تم التحديث إلى v5
         with:
           python-version: '3.10'
 
@@ -32,7 +32,7 @@ jobs:
           yes | buildozer -v android debug
         
       - name: Upload APK
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4 # تم التحديث إلى v4 (هذا هو حل الخطأ الظاهر في الصورة)
         with:
           name: package
           path: bin/*.apk
